@@ -187,11 +187,21 @@ define(["jquery"], function ($) {
     this.animate({borderSpacing: -90, opacity: 0.5}, {
       step: function(now, fx) {
         if (fx.prop == "borderSpacing") {
-          $(this).css('-webkit-transform', 'perspective( 600px ) rotateX('+now+'deg)')
-            .css('-moz-transform', 'perspective( 600px ) rotateX('+now+'deg)')
-            .css('-ms-transform', 'perspective( 600px ) rotateX('+now+'deg)')
-            .css('-o-transform', 'perspective( 600px ) rotateX('+now+'deg)')
-            .css('transform', 'perspective( 600px ) rotateX('+now+'deg)');
+          // after 2 days of debugging...
+          // seems like some sort of error arises here
+          // if this line is executed, webkit's screen will go blank (gray)
+          // and it will be unresponsive
+          // this appears to happen to only certain elements
+          // $(this).css('-webkit-transform',
+          //             'perspective( 600px ) rotateX('+now+'deg)')
+          //   .css('-moz-transform',
+          //        'perspective( 600px ) rotateX('+now+'deg)')
+          //   .css('-ms-transform',
+          //        'perspective( 600px ) rotateX('+now+'deg)')
+          //   .css('-o-transform',
+          //        'perspective( 600px ) rotateX('+now+'deg)')
+          //   .css('transform',
+          //        'perspective( 600px ) rotateX('+now+'deg)');
         } else {
           $(this).css(fx.prop, now);
         }
